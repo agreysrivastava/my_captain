@@ -24,9 +24,29 @@ public class MultiThread implements Runnable{
         for(int i=0;i<4;i++){
             Thread obj=new Thread(new MultiThread());
             obj.start();
+            Multi m=new Multi();
+            m.start();
         }
     }
 }
+public class Multi extends Thread{
+    boolean val= false
+    public void run(){
+        int i=0;
+        while(i<5){
+        if(val){
+            System.out.println(Thread.currentThread().getName());
+            val=false;
+        }
+        else{
+            System.out.println(Thread.currentThread().getName()+" in Else");
+            val=true;
+        }
+        i++;
+        }
+    }
+}
+    
 
 /*
 Thread 11 value:-10
