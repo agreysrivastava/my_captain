@@ -7,8 +7,6 @@ public class ProjFile {
         String str1,str2="";
         try{
             BufferedReader br =new BufferedReader(new FileReader(fp));
-            
-            
             while((str1=br.readLine())!=null){
                 System.out.println(str1);
                 str2=str2+"\n"+str1;
@@ -54,26 +52,28 @@ public class ProjFile {
     public static void main(String[] args) {
         try{
             Scanner sc=new Scanner(System.in);
-            File fp=new File("nw.txt");
-            File fi=new File("nw1.txt");
-            FileWriter fw=new FileWriter(fp,true);
-            String str=sc.nextLine();
-            if(fp.length()!=0)
-                fw.write("\n"+str);
+            File f=new File("nw.txt");
+            File f1= new File("nw1.txt");
+            readSC(f);
+            System.out.println(f.getAbsolutePath());
+            FileWriter fw= new FileWriter(f,true);
+            System.out.println("Enter the text to be entered");
+            String str= sc.nextLine();
+            if(f.length()==0)
+                fw.write(str);
             else
-                fw.write(str); 
+                fw.write("\n"+str);
             fw.close();
-            System.out.println(fp.getAbsolutePath());
-            String out=readBr(fp);
-            System.out.println("==================");
-            readSC(fp);
-            System.out.println("==================");
-            readFR(fp);
-            out=out.toUpperCase();
-            FileWriter fw1=new FileWriter(fp);
-            fw1.write(out);
+            System.out.println("====================");
+            
+                String con=readBr(f);
+            System.out.println("====================");
+            if(f.canRead())
+            readFR(f1);
+            FileWriter fw1= new FileWriter(f1);
+            fw1.write(con);
             fw1.close();
-            readSC(fp);
+            readFR(f1);
             //fp.delete();
         }
         catch(Exception e){
