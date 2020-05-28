@@ -1,63 +1,79 @@
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import javax.swing.*;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author user
+ */
 public class frmNew extends javax.swing.JFrame {
 
-    /**
-     * Creates new form frmNew
-     */
     Timer t1,t2,t3;
-    Random rnd=new Random();
-    int user,out,a,b,c;
-    boolean flag=true;
-    String str;
+    Random rnd= new Random();
+    int a,b,c,guess;
+    String inp_guess;
+    boolean flag=false;
     public frmNew() {
         initComponents();
-        do{
-            out=rnd.nextInt()%1000;
-        }while(out<100);
-         str=out+"";
-        a=Integer.parseInt(str.charAt(0)+"");
-        b=Integer.parseInt(str.charAt(1)+"");
-        c=Integer.parseInt(str.charAt(2)+"");
-        System.out.println(a+""+b+""+c);
-        t1=new Timer(100,new ActionListener(){
+        generate();
+        
+        t1= new Timer(100, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                 int x=rnd.nextInt()%10;
-                 lbl1.setText(x+"");
-                 if(x==a){
-                     t1.stop();
-                     t2.start();
-                 }
+                int x=Math.abs(rnd.nextInt()%10);
+                lbl1.setText(x+"");
+                if(x==a){
+                    t1.stop();
+                    t2.start();
+                }
             }
+            
         });
-        t2=new Timer(100,new ActionListener(){
+        t2= new Timer(100, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                 int x=rnd.nextInt()%10;
-                 lbl2.setText(x+"");
-                 if(x==b){
-                     t2.stop();
-                     t3.start();
-                 }
+                int x=Math.abs(rnd.nextInt()%10);
+                lbl2.setText(x+"");
+                if(x==b){
+                    t2.stop();
+                    t3.start();
+                }
             }
+            
         });
-        t3=new Timer(100,new ActionListener(){
+        t3= new Timer(100, new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                 int x=rnd.nextInt()%10;
-                 lbl3.setText(x+"");
-                 if(x==c){
-                     t3.stop();
-                     flag=false;
-                     btnEnter.doClick();
-                 }
+                int x=Math.abs(rnd.nextInt()%10);
+                lbl3.setText(x+"");
+                if(x==c){
+                    t3.stop();
+                    flag=true;
+                    btnEnter.doClick();
+                }
             }
+            
         });
     }
-
+    public void generate(){
+        do{
+            guess =rnd.nextInt()%1000;
+        }while(guess<=100);
+        System.out.println(guess);
+         inp_guess=guess+"";
+        a=Integer.parseInt(inp_guess.charAt(0)+"");
+        b=Integer.parseInt(inp_guess.charAt(1)+"");
+        c=Integer.parseInt(inp_guess.charAt(2)+"");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,40 +88,58 @@ public class frmNew extends javax.swing.JFrame {
         lbl2 = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtEnter = new javax.swing.JTextField();
-        btnReset = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtNumber = new javax.swing.JTextField();
         btnEnter = new javax.swing.JButton();
+        btnClr = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Guess the Number");
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 3));
 
-        lbl1.setBackground(new java.awt.Color(255, 0, 0));
-        lbl1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lbl1.setBackground(new java.awt.Color(0, 255, 255));
+        lbl1.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         lbl1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl1.setText(" ");
         lbl1.setOpaque(true);
         jPanel1.add(lbl1);
 
-        lbl2.setBackground(new java.awt.Color(255, 0, 0));
-        lbl2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lbl2.setBackground(new java.awt.Color(0, 255, 255));
+        lbl2.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         lbl2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl2.setText(" ");
         lbl2.setOpaque(true);
         jPanel1.add(lbl2);
 
-        lbl3.setBackground(new java.awt.Color(255, 0, 51));
-        lbl3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lbl3.setBackground(new java.awt.Color(0, 255, 255));
+        lbl3.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         lbl3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl3.setText(" ");
         lbl3.setOpaque(true);
         jPanel1.add(lbl3);
 
-        jLabel4.setText("Enter Your Number:");
+        jLabel4.setBackground(new java.awt.Color(255, 0, 51));
+        jLabel4.setFont(new java.awt.Font("Bodoni MT", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Guess the Number");
+        jLabel4.setOpaque(true);
 
-        btnReset.setText("Reset");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Enter the Number");
 
         btnEnter.setText("Enter");
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterActionPerformed(evt);
+            }
+        });
+
+        btnClr.setText("Clear");
+        btnClr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClrActionPerformed(evt);
             }
         });
 
@@ -116,54 +150,60 @@ public class frmNew extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtEnter))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNumber))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
                 .addComponent(btnEnter)
-                .addGap(67, 67, 67)
-                .addComponent(btnReset)
-                .addGap(92, 92, 92))
+                .addGap(71, 71, 71)
+                .addComponent(btnClr)
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEnter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReset)
-                    .addComponent(btnEnter))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnEnter)
+                    .addComponent(btnClr))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        String inp="";
-        if(flag){
-             inp=txtEnter.getText();
-            user=Integer.parseInt(inp);
-            t1.start();
-        }
+        String inp=txtNumber.getText();
+        if(flag==false)
+        t1.start();
         else{
-            String str1=lbl1.getText()+lbl2.getText()+lbl3.getText();
-            inp=txtEnter.getText();
-            if(inp.equals(str1)){
-                JOptionPane.showMessageDialog(this, "Congratss", "You Won",JOptionPane.INFORMATION_MESSAGE);
+            if(inp.equals(inp_guess)){
+                JOptionPane.showMessageDialog(this, "Congratulation!!!", "You Won", JOptionPane.INFORMATION_MESSAGE);
             }
             else
-                JOptionPane.showMessageDialog(this, "Sorry", "Better Luck Next time",JOptionPane.WARNING_MESSAGE);
-            flag=true;
+                JOptionPane.showMessageDialog(this, "Sorry!!!", "Better Luck Next Time", JOptionPane.WARNING_MESSAGE);
+            flag=false;
         }
     }//GEN-LAST:event_btnEnterActionPerformed
+
+    private void btnClrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClrActionPerformed
+        txtNumber.setText("");
+        lbl1.setText("");
+        lbl2.setText("");
+        lbl3.setText("");
+        generate();
+    }//GEN-LAST:event_btnClrActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,13 +241,14 @@ public class frmNew extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClr;
     private javax.swing.JButton btnEnter;
-    private javax.swing.JButton btnReset;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl1;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
-    private javax.swing.JTextField txtEnter;
+    private javax.swing.JTextField txtNumber;
     // End of variables declaration//GEN-END:variables
 }
