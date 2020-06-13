@@ -1,19 +1,25 @@
+package projcaptain;
+
 import java.util.*;
-import projcaptain.myclass;
 public class Car{
-    String Name;
+    public String Name;
     int price;
     int gear;
-    private String model;
+    private  String model;
     myclass o=new myclass();
-    Car(){
+    public Car(){
         Name="Suzuki";
         price=90000;
         gear=5;
-        
-        System.out.println("Constructor of Parent class ");
+        model="M100";
+        o.Sopln("Constructor of Parent class ");
     }
-   protected void setModel(String mod){
+    public void setData(String name,int gear,int price){
+        this.Name=name;
+        this.gear=gear;
+        this.price=price;
+    }
+  protected  void setModel(String mod){
        model=mod;
    }
     protected String getMod(){
@@ -23,6 +29,7 @@ public class Car{
        o.Sopln(Name);
        o.Sopln(price);
        o.Sopln(gear);
+       o.Sopln(getMod());
    }
 }
 /*
