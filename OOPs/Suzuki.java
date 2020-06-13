@@ -1,50 +1,24 @@
-
-import java.io.*;
 import java.util.*;
-import projcaptain.myclass;
-import projfeb.*;
-import static java.lang.System.*;
- public class Suzuki extends Car {
-         
-     static myclass o=new myclass();
-     Suzuki(){
-         o.Sopln("Constructor of child class");
-     }
-    public static void main(String[] args)  {
-        Scanner sc=new Scanner(System.in);
-        Shape c =new Shape();
-        c.setName("Circle");
-        Shape r= new Shape();
-        Shape r1=new Shape();
-        r1.setSize(1,50);
-        c.setSize(10);
-        r.setSize(20,30);
-        double ar_c=c.getArea();
-        o.Sopln(ar_c);
-        double ar_r=r.getArea(5,10);
-        o.Sopln(ar_r);
-        double ar_r1=r1.getArea(10,20);
-        o.Sopln(ar_r1);
-        String str1=r1.getName();
-        o.Sopln(str1);
-        o.Sopln(c.getName());
-        
-        Car car=new Car();
-        car.setModel("P100");
-        o.Sopln(car.getMod());
-        car.printData();
-        Suzuki s=new Suzuki();
+import projcaptain.Car;
+public class Suzuki extends Car {
+    Suzuki(){
+        sopln("Constructor of Child class");
+    }
+    public static void sopln(Object o){
+        System.out.println(o);
+    }
+    public static void main(String[] args) {
+        Scanner sc  = new Scanner(System.in);
+        Car c = new Car();
+        Suzuki s = new Suzuki();
+        c.setData("Meredes", 6, 300000);
+        s.setData("Suzuki", 6, 1000000);
+        s.setModel("S200");
+        sopln(s.getMod());
+        c.printData();
         s.printData();
-        s.setModel("M200");
-        o.Sopln(s.getMod());
-        o.Sopln("");
-        febclass f=new febclass();
-        f.Sopln("Hello");
-        out.println();
     }
 }
-
-
 
 
 

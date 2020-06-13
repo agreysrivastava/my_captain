@@ -2,8 +2,12 @@
 public class Shape{
     private String name="Rectangle";
     private int a=0,b=0;
-    public void setName(String n){
-        name=n;
+    public void setName(int a, int b){
+        if(a==b)
+            name="Square";
+    }
+    public void setName(int r){
+        name = "Circle";
     }
     public String getName(){
         return name;
@@ -16,12 +20,12 @@ public class Shape{
         a=r;
     }
     public double getArea(){
-        double area=Math.PI*a*a;
+        double area=3.14*a*a;
         return area;
     }
-    public double getArea(int a, int b){
+    public int getArea(int a, int b){
         double area=this.a*this.b;
-        return area;
+        return (int)area;
     }
 }
 
